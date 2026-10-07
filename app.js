@@ -94,7 +94,7 @@ function currentPlayer() { return state.players.find((player) => player.id === s
 function posAfter(position, amount) { return (position + amount % 24 + 24) % 24; }
 function boardGridCoordinates(index) {
   if (index < 8) return { gridRow: 6, gridColumn: index + 1 };
-  if (index < 12) return { gridRow: 12 - index, gridColumn: 8 };
+  if (index < 12) return { gridRow: 13 - index, gridColumn: 8 };
   if (index < 20) return { gridRow: 1, gridColumn: 20 - index };
   return { gridRow: index - 18, gridColumn: 1 };
 }
