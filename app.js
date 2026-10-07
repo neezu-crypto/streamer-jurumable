@@ -134,13 +134,45 @@ function renderBoard(targetId, interactive) {
     if (interactive) {
       cell.type = 'button';
       cell.dataset.tileIndex = String(index);
-      cell.setAttribute('aria-label', `${index + 1}번 칸 ${tile.name}${pendingReplacement ? ', 항목 교체' : ', 클릭해 항목 교체'}`);
-      cell.title = pendingReplacement ? `${tile.name} → ${pendingReplacement.name}로 교체` : '선택한 항목으로 교체';
+      const canReorder = !isObs && state.status === 'lobby' && index !== 0;
+      cell.draggable = canReorder;
+      if (canReorder) cell.classList.add('can-reorder');
+      cell.setAttribute('aria-label', `${index + 1}번 칸 ${tile.name}${pendingReplacement ? ', 항목 교체' : canReorder ? ', 게임 시작 전 드래그로 위치 변경 가능' : ', 클릭해 항목 교체'}`);
+      cell.title = pendingReplacement ? `${tile.name} → ${pendingReplacement.name}로 교체` : canReorder ? '게임 시작 전 다른 칸으로 드래그해 위치를 바꿉니다' : '선택한 항목으로 교체';
       cell.addEventListener('click', () => replaceTile(index));
-      cell.addEventListener('dragover', (event) => { if (pendingReplacement) { event.preventDefault(); cell.classList.add('edit-target'); } });
+      cell.addEventListener('dragstart', (event) => {
+        if (isObs || state.status !== 'lobby' || index === 0) { event.preventDefault(); return; }
+        pendingReplacement = null;
+        $('editSelection').textContent = '칸을 다른 칸으로 드래그해 위치를 바꾸세요';
+        renderTileLibrary();
+        cell.setAttribute('aria-label', `${index + 1}번 칸 ${tile.name}, 게임 시작 전 드래그로 위치 변경 가능`);
+        cell.title = '다른 칸에 놓아 위치를 바꿉니다';
+        event.dataTransfer.setData('text/jurumable-board-index', String(index));
+        event.dataTransfer.effectAllowed = 'move';
+        cell.classList.add('drag-source');
+      });
+      cell.addEventListener('dragend', () => cell.classList.remove('drag-source'));
+      cell.addEventListener('dragover', (event) => {
+        const dragTypes = Array.from(event.dataTransfer?.types || []);
+        const boardDrag = !isObs && state.status === 'lobby' && dragTypes.includes('text/jurumable-board-index');
+        const libraryDrag = Boolean(pendingReplacement) || dragTypes.includes('text/jurumable-tile');
+        if (boardDrag || libraryDrag) { event.preventDefault(); cell.classList.add('edit-target'); }
+      });
       cell.addEventListener('dragleave', () => cell.classList.remove('edit-target'));
       cell.addEventListener('drop', (event) => {
         event.preventDefault(); cell.classList.remove('edit-target');
+        const draggedIndex = Number(event.dataTransfer.getData('text/jurumable-board-index'));
+        if (!isObs && state.status === 'lobby' && Number.isInteger(draggedIndex) && draggedIndex > 0 && draggedIndex < state.board.length) {
+          if (index === 0) { showToast('출발 칸은 이동할 수 없습니다.'); return; }
+          if (draggedIndex === index) return;
+          const next = cloneState(state);
+          [next.board[draggedIndex], next.board[index]] = [next.board[index], next.board[draggedIndex]];
+          pendingReplacement = null;
+          setState(next);
+          $('editSelection').textContent = `${draggedIndex + 1}번 칸과 ${index + 1}번 칸의 위치를 바꿨어요`;
+          showToast(`${draggedIndex + 1}번 칸과 ${index + 1}번 칸의 위치를 바꿨어요.`);
+          return;
+        }
         const id = event.dataTransfer.getData('text/jurumable-tile');
         const item = LIBRARY.find((entry) => entry.id === id);
         if (item) { pendingReplacement = item; replaceTile(index); }

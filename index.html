@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261007-5">
+  <link rel="stylesheet" href="style.css?v=20261007-6">
 </head>
 <body>
   <div class="app-shell" id="appShell">
@@ -50,7 +50,7 @@
         </section>
 
         <section class="panel edit-panel"><div class="panel-title"><div><p class="eyebrow">BOARD EDITOR</p><h2>칸 바꾸기</h2></div><span class="edit-glyph">✦</span></div>
-          <p class="helper-text">아래 항목을 선택하고 보드 칸을 눌러 교체하세요. 이름과 안내·효과가 함께 바뀝니다.</p>
+          <p class="helper-text">칸끼리 드래그하면 서로 위치가 바뀝니다. 게임을 시작한 뒤에는 재배치할 수 없어요. 아래 항목을 선택하고 칸을 누르면 이름·안내·효과를 함께 교체합니다.</p>
           <div class="tile-library" id="tileLibrary"></div>
           <div class="edit-selection" id="editSelection">교체할 항목을 먼저 선택하세요</div>
           <button class="reset-board-button" id="resetBoardButton">기본 보드로 되돌리기</button>
@@ -70,6 +70,6 @@
 
   <dialog id="landingDialog" class="landing-dialog"><div class="dialog-card"><button class="dialog-close" id="dialogClose" aria-label="닫기">×</button><p class="eyebrow">SPACE  <span>·  벌칙 안내</span></p><div class="dialog-icon" id="dialogIcon">✦</div><p class="dialog-player" id="dialogPlayer">도착한 참가자</p><h2 id="dialogTileName">벌칙 이름</h2><p class="dialog-detail" id="dialogDetail"></p><div class="dialog-shield hidden" id="dialogShield"></div><div class="dialog-actions" id="dialogActions"></div><p class="dialog-foot">안내를 확인한 뒤 진행자가 벌칙 수행을 확인해 주세요</p></div></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script type="module" src="app.js?v=20261007-3"></script>
+  <script type="module" src="app.js?v=20261007-4"></script>
 </body>
 </html>
