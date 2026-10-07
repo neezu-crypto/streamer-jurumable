@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="berry" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffb0cf"/><stop offset="1" stop-color="#ff5f99"/></linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a5eaff"/><stop offset="1" stop-color="#4f9dff"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff1a4"/><stop offset="1" stop-color="#ffb642"/></linearGradient>
+    <linearGradient id="mint" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b8f5df"/><stop offset="1" stop-color="#58c9b2"/></linearGradient>
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e2c5ff"/><stop offset="1" stop-color="#8c73ee"/></linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0.9" y2="1"><stop stop-color="#fff9d1"/><stop offset="1" stop-color="#ffad42"/></linearGradient>
+  </defs>
+  <symbol id="tile-start" viewBox="0 0 96 96">
+    <path d="M30 81 37 17" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round"/><path d="M30 81 37 17" fill="none" stroke="#8a6b56" stroke-width="5" stroke-linecap="round"/>
+    <path d="m38 20 43 8-12 13 9 13-43-8Z" fill="url(#berry)" stroke="#fff" stroke-width="6" stroke-linejoin="round"/><path d="m43 29 12 2-2 12-12-2Zm20 4 12 2-2 12-12-2Z" fill="#fff5ce"/>
+    <path d="m18 21 3-8 3 8 8 3-8 3-3 8-3-8-8-3Zm61 43 2-6 2 6 6 2-6 2-2 6-2-6-6-2Z" fill="#ffd35d" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="tile-drink" viewBox="0 0 96 96">
+    <path d="M27 25h47l-4 56H32Z" fill="url(#glass)" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><path d="M29 30h43l-2 16H31Z" fill="#fff0a7"/><path d="M23 28c-7-11 6-19 14-11 4-11 22-9 23 1 9-7 19 3 13 11Z" fill="#fffdf3" stroke="#fff" stroke-width="6" stroke-linejoin="round"/><path d="M79 39c13 0 12 25-3 25" fill="none" stroke="#fff" stroke-width="9"/><path d="M79 39c13 0 12 25-3 25" fill="none" stroke="#dc9b52" stroke-width="4"/><path d="M42 51h9v17h-9z" fill="#fff7dd" opacity=".72"/>
+  </symbol>
+  <symbol id="tile-shield" viewBox="0 0 96 96">
+    <path d="M48 10 80 22v24c0 20-13 32-32 41C29 78 16 66 16 46V22Z" fill="url(#blue)" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><path d="m48 25 7 14 16 2-12 11 3 16-14-8-14 8 3-16-12-11 16-2Z" fill="url(#gold)" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><path d="M27 27 43 21" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".85"/>
+  </symbol>
+  <symbol id="tile-snack" viewBox="0 0 96 96">
+    <path d="m18 78 60-60" stroke="#fff" stroke-width="9" stroke-linecap="round"/><path d="m18 78 60-60" stroke="#a96b3d" stroke-width="4" stroke-linecap="round"/><path d="M23 68c-7-7-2-15 7-16-3-9 4-15 12-10 0-10 10-12 15-3 8-6 17 1 13 10 10 1 11 11 2 16l-30 30c-7 6-16-1-12-9-10 0-13-11-7-18Z" fill="url(#gold)" stroke="#fff" stroke-width="6" stroke-linejoin="round"/><path d="m34 58 6 3m12-15 5 5m-21 21 6 3m15-17 6 4" stroke="#e98455" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="tile-song" viewBox="0 0 96 96">
+    <path d="M57 20v48c0 12-24 16-25 5-1-8 9-12 19-9V28l31-7v41c0 12-24 16-25 5" fill="url(#berry)" stroke="#fff" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/><path d="m19 32 4 8 9 2-7 6 2 9-8-5-8 5 2-9-7-6 9-2Zm61 34 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z" fill="url(#gold)" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="tile-water" viewBox="0 0 96 96">
+    <path d="M29 34h39l-4 47H33Z" fill="#d9f7ff" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><path d="M32 53h33l-2 24H34Z" fill="url(#blue)"/><path d="M48 9C40 24 29 34 29 46a19 19 0 0 0 38 0C67 34 56 24 48 9Z" fill="url(#blue)" stroke="#fff" stroke-width="6"/><path d="M41 48c1 5 4 7 8 8" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="tile-viewerpick" viewBox="0 0 96 96">
+    <path d="M22 54c-8-10-19-1-12 9l20 25h31c8-10 15-19 19-29 4-10-8-16-14-7l-8 10V25c0-11-14-11-14 0v27l-9-8c-7-6-15 2-10 10Z" fill="url(#berry)" stroke="#fff" stroke-width="6" stroke-linejoin="round"/><path d="M22 18c-9 0-13 12-5 17m42-17c9 0 13 12 5 17" fill="none" stroke="url(#gold)" stroke-width="7" stroke-linecap="round"/><path d="m42 14 6-8 6 8" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="tile-squat" viewBox="0 0 96 96">
+    <path d="M17 31h62v13H17z" rx="5" fill="url(#violet)" stroke="#fff" stroke-width="6"/><path d="M11 20h16v35H11zm58 0h16v35H69z" rx="6" fill="url(#blue)" stroke="#fff" stroke-width="6"/><path d="M31 23h34" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M30 73h37" stroke="#ff9abd" stroke-width="6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="tile-english" viewBox="0 0 96 96">
+    <path d="M12 22c0-7 6-12 14-12h45c8 0 13 5 13 12v34c0 7-5 12-13 12H43L25 82v-14c-8 0-13-5-13-12Z" fill="#f7fbff" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><path d="M29 34h39" stroke="#78b2ec" stroke-width="6" stroke-linecap="round"/><path d="m17 19 65 59" stroke="#ff678b" stroke-width="11" stroke-linecap="round"/><path d="m17 19 65 59" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="tile-reverse" viewBox="0 0 96 96">
+    <path d="M26 40c4-12 18-18 30-12l7 4 4-9 12 20-22 4 3-9-8-4c-8-4-17 0-19 8Z" fill="url(#blue)" stroke="#fff" stroke-width="6" stroke-linejoin="round"/><path d="M70 57c-4 12-18 18-30 12l-7-4-4 9-12-20 22-4-3 9 8 4c8 4 17 0 19-8Z" fill="url(#berry)" stroke="#fff" stroke-width="6" stroke-linejoin="round"/><path d="m28 27 4-8m36 59 4 8" stroke="url(#gold)" stroke-width="6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="tile-rollagain" viewBox="0 0 96 96">
+    <path d="M48 11 78 28v40L48 85 18 68V28Z" fill="#fff" stroke="#fff" stroke-width="8" stroke-linejoin="round"/><path d="M48 17 72 31v34L48 79 24 65V31Z" fill="url(#blue)" stroke="#6c8fda" stroke-width="3" stroke-linejoin="round"/><g fill="#fff"><circle cx="36" cy="34" r="4"/><circle cx="60" cy="34" r="4"/><circle cx="48" cy="48" r="4"/><circle cx="36" cy="62" r="4"/><circle cx="60" cy="62" r="4"/></g><path d="m17 13 3-7 3 7 7 3-7 3-3 7-3-7-7-3Z" fill="url(#gold)" stroke="#fff" stroke-width="3"/>
+  </symbol>
+  <symbol id="tile-back3" viewBox="0 0 96 96">
+    <path d="M78 48H24m0 0 22-22M24 48l22 22" fill="none" stroke="#fff" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/><path d="M78 48H24m0 0 22-22M24 48l22 22" fill="none" stroke="url(#blue)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 19c-8 0-12 12-5 16m49 43c8 0 12-12 5-16" fill="none" stroke="url(#berry)" stroke-width="5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="tile-forward3" viewBox="0 0 96 96">
+    <path d="M18 48h54m0 0L50 26m22 22L50 70" fill="none" stroke="#fff" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 48h54m0 0L50 26m22 22L50 70" fill="none" stroke="url(#mint)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="m27 20 3-7 3 7 7 3-7 3-3 7-3-7-7-3Zm43 46 2-5 2 5 5 2-5 2-2 5-2-5-5-2Z" fill="url(#gold)" stroke="#fff" stroke-width="3"/>
+  </symbol>
+  <symbol id="tile-aegyo" viewBox="0 0 96 96">
+    <path d="M48 80 16 50C-2 31 21 9 39 25l9 9 9-9c18-16 41 6 23 25Z" fill="url(#berry)" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><path d="m21 25 2-6 2 6 6 2-6 2-2 6-2-6-6-2Zm57 19 2-5 2 5 5 2-5 2-2 5-2-5-5-2Z" fill="#fff2a0" stroke="#fff" stroke-width="3"/><path d="M37 48q4 5 8 0m7 0q4 5 8 0" fill="none" stroke="#a94c71" stroke-width="4" stroke-linecap="round"/><circle cx="36" cy="57" r="3" fill="#ff8eae"/><circle cx="62" cy="57" r="3" fill="#ff8eae"/>
+  </symbol>
+  <symbol id="tile-tmi" viewBox="0 0 96 96">
+    <path d="M13 19c0-7 6-12 13-12h44c8 0 13 5 13 12v37c0 7-5 12-13 12H42L25 83V68c-7 0-12-5-12-12Z" fill="url(#blue)" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><path d="M31 39h2m13 0h2m13 0h2" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M66 77c0-8 6-14 14-14s14 6 14 14-6 13-14 13H69l-7 6 1-9Z" fill="url(#berry)" stroke="#fff" stroke-width="5"/>
+  </symbol>
+  <symbol id="tile-random" viewBox="0 0 96 96">
+    <path d="M48 10c8 14 34 21 34 45a34 34 0 0 1-68 0c0-24 26-31 34-45Z" fill="url(#violet)" stroke="#fff" stroke-width="7"/><path d="M49 26c-3 12-16 16-15 29 1 8 9 14 17 12-5-7-1-12 7-17 9-6 7-17-9-24Z" fill="url(#berry)" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><path d="m20 18 3-7 3 7 7 3-7 3-3 7-3-7-7-3Zm51 8 2-5 2 5 5 2-5 2-2 5-2-5-5-2Z" fill="url(#gold)" stroke="#fff" stroke-width="3"/>
+  </symbol>
+  <symbol id="tile-qa" viewBox="0 0 96 96">
+    <path d="M13 21c0-7 6-12 13-12h44c8 0 13 5 13 12v34c0 7-5 12-13 12H47L28 82V67c-9 0-15-5-15-12Z" fill="#fff" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><path d="M43 29c0-8 14-10 17-2 2 6-8 9-8 15" fill="none" stroke="url(#blue)" stroke-width="7" stroke-linecap="round"/><circle cx="52" cy="51" r="3.5" fill="#598dd8"/><path d="M68 61v6c0 12-8 19-19 19H33" fill="none" stroke="url(#berry)" stroke-width="7" stroke-linecap="round"/><circle cx="31" cy="86" r="7" fill="url(#berry)" stroke="#fff" stroke-width="4"/>
+  </symbol>
+  <symbol id="tile-rest" viewBox="0 0 96 96">
+    <path d="M17 46c0-12 11-20 22-16 3-14 25-15 30 0 15-1 22 17 12 27-7 8-17 6-27 6H34c-10 0-17-6-17-17Z" fill="#fff" stroke="#fff" stroke-width="7"/><path d="M22 48c0-9 8-14 17-12 4-11 20-11 24 1 12-2 17 10 11 17-5 5-14 4-22 4H35c-8 0-13-3-13-10Z" fill="url(#blue)"/><path d="m26 73 4 4m17-2 4 4m17-6 4 4" stroke="url(#violet)" stroke-width="5" stroke-linecap="round"/><path d="m76 20 2-6 2 6 6 2-6 2-2 6-2-6-6-2Z" fill="url(#gold)" stroke="#fff" stroke-width="3"/>
+  </symbol>
+  <symbol id="tile-tip" viewBox="0 0 96 96">
+    <path d="M48 14v56" stroke="#fff" stroke-width="9" stroke-linecap="round"/><path d="M48 14v56" stroke="#7d87a8" stroke-width="4" stroke-linecap="round"/><path d="M33 31c8-10 22-10 30 0m-38-9c12-16 34-16 46 0m-55-9c17-22 47-22 64 0" fill="none" stroke="url(#blue)" stroke-width="6" stroke-linecap="round"/><path d="M35 70h26l7 12H28Z" fill="url(#berry)" stroke="#fff" stroke-width="6" stroke-linejoin="round"/><circle cx="48" cy="74" r="5" fill="#fff3ad"/>
+  </symbol>
+  <symbol id="tile-dance" viewBox="0 0 96 96">
+    <circle cx="49" cy="22" r="11" fill="url(#gold)" stroke="#fff" stroke-width="5"/><path d="m40 37 15-2 10 18-7 5-10-11-7 16-16-4 7-9-10-4 3-7 17 3Z" fill="url(#berry)" stroke="#fff" stroke-width="6" stroke-linejoin="round"/><path d="m45 61-11 24m22-24 17 17m-35-35L24 27m42 12 13-10" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="m76 15 5-3v15c0 6-9 7-9 2 0-3 3-4 6-3V18l-2 1Z" fill="url(#violet)" stroke="#fff" stroke-width="3"/>
+  </symbol>
+  <symbol id="tile-impression" viewBox="0 0 96 96">
+    <path d="M15 23c0-9 8-15 18-12l14 5 14-5c10-3 20 3 20 12v19c0 16-12 26-34 37C26 68 15 58 15 42Z" fill="url(#gold)" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><path d="M20 28c8-6 16-5 24-1v19c-10 8-18 7-24 0Zm56 0c-8-6-16-5-24-1v19c10 8 18 7 24 0Z" fill="#fff9eb" stroke="#9b7181" stroke-width="4" stroke-linejoin="round"/><path d="M29 37h8m22 0h8m-31 9 5 3m21-3-5 3" stroke="#865b65" stroke-width="3" stroke-linecap="round"/><path d="M34 65q14 10 28 0" fill="none" stroke="#e9839e" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="tile-toast" viewBox="0 0 96 96">
+    <path d="m18 22 23 3-3 35c-1 12-12 16-21 10-6-5-4-12 3-14l6-1Z" fill="url(#glass)" stroke="#fff" stroke-width="6" stroke-linejoin="round"/><path d="m57 19 22-3-5 34c-2 12-13 15-21 8-5-5-3-12 4-14l7-1Z" fill="url(#berry)" stroke="#fff" stroke-width="6" stroke-linejoin="round"/><path d="m28 32 16 3m21-5 15-2" stroke="#fff7d4" stroke-width="4" stroke-linecap="round"/><path d="M44 32 51 24m-9 18 13-14" stroke="#fff" stroke-width="5" stroke-linecap="round"/><path d="m48 12 3-7 3 7 7 3-7 3-3 7-3-7-7-3Z" fill="url(#gold)" stroke="#fff" stroke-width="3"/>
+  </symbol>
+  <symbol id="tile-challenge" viewBox="0 0 96 96">
+    <path d="m48 9 11 24 26 3-19 17 6 26-24-13-24 13 6-26-19-17 26-3Z" fill="url(#gold)" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><path d="m48 28 6 14 15 2-11 10 3 15-13-7-13 7 3-15-11-10 15-2Z" fill="#fff5c4" opacity=".8"/><path d="m15 29 2-6 2 6 6 2-6 2-2 6-2-6-6-2Zm63 29 2-5 2 5 5 2-5 2-2 5-2-5-5-2Z" fill="url(#berry)" stroke="#fff" stroke-width="3"/>
+  </symbol>
+  <symbol id="tile-free" viewBox="0 0 96 96">
+    <circle cx="48" cy="49" r="32" fill="#fff8ee" stroke="#fff" stroke-width="7"/><circle cx="48" cy="49" r="23" fill="url(#berry)" stroke="#e97498" stroke-width="4"/><circle cx="48" cy="49" r="14" fill="url(#blue)" stroke="#fff" stroke-width="4"/><circle cx="48" cy="49" r="6" fill="url(#gold)" stroke="#fff" stroke-width="3"/><path d="m63 32 17-15m-2 1 8-1-2 8" fill="none" stroke="#7a5c59" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="m19 20 3-7 3 7 7 3-7 3-3 7-3-7-7-3Z" fill="url(#gold)" stroke="#fff" stroke-width="3"/>
+  </symbol>
+</svg>

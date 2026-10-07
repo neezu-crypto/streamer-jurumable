@@ -89,6 +89,11 @@ function escapeHTML(value) {
   return String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 }
 
+function tileIllustrationMarkup(tile) {
+  const iconId = LIBRARY.find((item) => item.id === tile?.id)?.id || 'free';
+  return `<svg viewBox="0 0 96 96" aria-hidden="true" focusable="false"><use href="assets/tile-illustrations.svg#tile-${iconId}"></use></svg>`;
+}
+
 function cloneState(value) { return JSON.parse(JSON.stringify(value)); }
 function currentPlayer() { return state.players.find((player) => player.id === state.turnOrder[state.currentTurnIndex]) || null; }
 function posAfter(position, amount) { return (position + amount % 24 + 24) % 24; }
@@ -136,7 +141,7 @@ function renderBoard(targetId, interactive) {
     const current = currentPlayer();
     if (state.status === 'playing' && current && movingPosition(current) === index) cell.classList.add('current');
     const activePlayers = state.players.filter((player) => movingPosition(player) === index);
-    cell.innerHTML = `<span class="tile-number">${String(index + 1).padStart(2, '0')}</span><span class="tile-name">${escapeHTML(tile.name)}</span><span class="tile-pawns">${activePlayers.map((player) => `<i class="pawn" title="${escapeHTML(player.name)}" style="background:${escapeHTML(player.color)}"></i>`).join('')}</span>`;
+    cell.innerHTML = `<span class="tile-number">${String(index + 1).padStart(2, '0')}</span><span class="tile-illustration">${tileIllustrationMarkup(tile)}</span><span class="tile-name">${escapeHTML(tile.name)}</span><span class="tile-pawns">${activePlayers.map((player) => `<i class="pawn" title="${escapeHTML(player.name)}" style="background:${escapeHTML(player.color)}"></i>`).join('')}</span>`;
     grid.append(cell);
   });
 }
@@ -176,7 +181,7 @@ function renderPlayers() {
 function renderTileLibrary() {
   const container = $('tileLibrary');
   if (!container) return;
-  container.innerHTML = LIBRARY.filter((item) => item.id !== 'start').map((item) => `<button class="library-chip${pendingReplacement?.id === item.id ? ' selected' : ''}" draggable="true" type="button" data-library-tile="${escapeHTML(item.id)}">${escapeHTML(item.name)}</button>`).join('');
+  container.innerHTML = LIBRARY.filter((item) => item.id !== 'start').map((item) => `<button class="library-chip${pendingReplacement?.id === item.id ? ' selected' : ''}" draggable="true" type="button" data-library-tile="${escapeHTML(item.id)}"><span class="library-illustration">${tileIllustrationMarkup(item)}</span><span>${escapeHTML(item.name)}</span></button>`).join('');
   container.querySelectorAll('[data-library-tile]').forEach((button) => {
     const item = LIBRARY.find((entry) => entry.id === button.dataset.libraryTile);
     button.addEventListener('click', () => { pendingReplacement = item; renderTileLibrary(); $('editSelection').textContent = `${item.name} 선택됨 · 바꿀 칸을 누르세요`; });
@@ -336,7 +341,7 @@ function showLanding(player, tile, extras = {}) {
   const next = cloneState(state);
   next.pending = { playerId: player.id, playerName: player.name, tile: { ...tile }, phase: 'landing', ...extras };
   setState(next);
-  $('dialogIcon').textContent = tile.icon || '✨';
+  $('dialogIcon').innerHTML = tileIllustrationMarkup(tile);
   $('dialogPlayer').textContent = `${player.name} 도착`;
   $('dialogTileName').textContent = tile.name;
   $('dialogDetail').textContent = extras.resultDetail || tile.detail;
