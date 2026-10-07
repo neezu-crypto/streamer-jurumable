@@ -79,6 +79,39 @@ function makeInitialState() {
   };
 }
 
+function normalizeRoomState(value) {
+  if (!value || !Array.isArray(value.board) || value.board.length !== 24) return null;
+  const defaults = makeInitialState();
+  const players = Array.isArray(value.players) ? value.players : [];
+  const status = value.status === 'playing' ? 'playing' : 'lobby';
+  const playerIds = players.map((player) => player?.id).filter((id) => typeof id === 'string');
+  const savedTurnOrder = Array.isArray(value.turnOrder)
+    ? [...new Set(value.turnOrder.filter((id) => playerIds.includes(id)))]
+    : [];
+  const turnOrder = status === 'playing'
+    ? [...savedTurnOrder, ...playerIds.filter((id) => !savedTurnOrder.includes(id))]
+    : [];
+  const rawTurnIndex = Number.isInteger(value.currentTurnIndex) ? value.currentTurnIndex : 0;
+  const currentTurnIndex = turnOrder.length ? ((rawTurnIndex % turnOrder.length) + turnOrder.length) % turnOrder.length : 0;
+
+  return {
+    ...defaults,
+    ...value,
+    board: value.board,
+    players,
+    status,
+    turnOrder,
+    currentTurnIndex,
+    rollValue: Number.isInteger(value.rollValue) && value.rollValue >= 0 && value.rollValue <= 6 ? value.rollValue : 0,
+    shieldCap: Number.isInteger(value.shieldCap) && value.shieldCap >= 0 && value.shieldCap <= 9 ? value.shieldCap : defaults.shieldCap,
+    pending: value.pending && typeof value.pending === 'object' && !Array.isArray(value.pending) ? value.pending : null,
+    direction: value.direction === -1 ? -1 : 1,
+    lastMove: value.lastMove && typeof value.lastMove === 'object' && !Array.isArray(value.lastMove) ? value.lastMove : null,
+    diceRolling: Boolean(value.diceRolling),
+    updatedAt: Number.isFinite(value.updatedAt) ? value.updatedAt : 0
+  };
+}
+
 function setConnection(message, connected = false) {
   const node = $('connection');
   node.innerHTML = `<i></i>${escapeHTML(message)}`;
@@ -103,7 +136,11 @@ function tileCardArtMarkup(tile) {
 }
 
 function cloneState(value) { return JSON.parse(JSON.stringify(value)); }
-function currentPlayer() { return state.players.find((player) => player.id === state.turnOrder[state.currentTurnIndex]) || null; }
+function currentPlayer() {
+  if (!Array.isArray(state.players) || !Array.isArray(state.turnOrder)) return null;
+  const playerId = state.turnOrder[state.currentTurnIndex];
+  return state.players.find((player) => player.id === playerId) || null;
+}
 function posAfter(position, amount) { return (position + amount % 24 + 24) % 24; }
 function boardGridCoordinates(index) {
   if (index < 8) return { gridRow: 6, gridColumn: index + 1 };
@@ -630,14 +667,15 @@ async function createRoom() {
 }
 
 function applyRoomState(value, viewOnly) {
-  if (!value || !Array.isArray(value.board)) return;
+  const normalized = normalizeRoomState(value);
+  if (!normalized) return;
   const localPending = state.pending;
-  state = value;
+  state = normalized;
   render();
   if (viewOnly) setConnection('실시간 방송 연결', true);
-  if (!viewOnly && value.pending && (!localPending || localPending.id !== value.pending.id)) {
-    showLanding(value.players.find((player) => player.id === value.pending.playerId) || { name: value.pending.playerName }, value.pending.tile, value.pending);
-  } else if (!viewOnly && !value.pending && $('landingDialog').open) $('landingDialog').close();
+  if (!viewOnly && normalized.pending && (!localPending || localPending.id !== normalized.pending.id)) {
+    showLanding(normalized.players.find((player) => player.id === normalized.pending.playerId) || { name: normalized.pending.playerName }, normalized.pending.tile, normalized.pending);
+  } else if (!viewOnly && !normalized.pending && $('landingDialog').open) $('landingDialog').close();
 }
 
 async function pollRoomState(viewOnly) {
