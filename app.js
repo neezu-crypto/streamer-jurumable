@@ -27,8 +27,8 @@ const LIBRARY = [
   { id: 'english', name: '영어 금지', detail: '다음 차례가 올 때까지 영어 단어를 쓰지 않아요.', icon: '🔇' },
   { id: 'reverse', name: '방향 전환', detail: '게임 진행 방향을 반대로 바꿔요.', icon: '🔄', effect: 'reverse' },
   { id: 'rollagain', name: '주사위 한 번 더', detail: '한 번 더 굴려요. 같은 참가자가 이어서 진행해요.', icon: '🎲', effect: 'again' },
-  { id: 'back3', name: '뒤로 3칸', detail: '말을 세 칸 뒤로 옮겨요. 이동한 칸의 벌칙도 수행해요.', icon: '⬅️', effect: 'move', amount: -3 },
-  { id: 'forward3', name: '앞으로 3칸', detail: '말을 세 칸 앞으로 옮겨요. 이동한 칸의 벌칙도 수행해요.', icon: '➡️', effect: 'move', amount: 3 },
+  { id: 'back3', name: '뒤로 3칸', detail: '말을 세 칸 뒤로 옮겨요. 도착한 칸의 안내를 확인해요. 이동 효과는 연쇄 발동하지 않아요.', icon: '⬅️', effect: 'move', amount: -3 },
+  { id: 'forward3', name: '앞으로 3칸', detail: '말을 세 칸 앞으로 옮겨요. 도착한 칸의 안내를 확인해요. 이동 효과는 연쇄 발동하지 않아요.', icon: '➡️', effect: 'move', amount: 3 },
   { id: 'aegyo', name: '애교 한줄', detail: '애교 섞인 한마디를 해요.', icon: '💗' },
   { id: 'tmi', name: 'TMI 한가지', detail: '시청자에게 TMI 한 가지를 공개해요.', icon: '💬' },
   { id: 'random', name: '랜덤 이동', detail: '주사위를 한 번 더 굴려 나온 숫자만큼 이동해요.', icon: '🌀', effect: 'again' },
@@ -488,14 +488,17 @@ function acknowledgeLanding() {
     $('dialogActions').append(done);
     return;
   }
-  if (pending.tile.effect === 'move' && !pending.followupDone) {
+  const movementEffectAlreadyUsed = pending.followupDone === true || pending.phase === 'followup';
+  if (pending.tile.effect === 'move' && !movementEffectAlreadyUsed) {
     const moveAmount = pending.tile.amount;
     const moveFrom = player.position;
     pending.followupDone = true;
     player.position = posAfter(moveFrom, moveAmount);
     const landingTile = next.board[player.position];
     pending.tile = { ...landingTile };
-    pending.resultDetail = `추가 이동 결과, ${landingTile.name} 칸에 도착했어요. 칸 안내를 확인해 주세요.`;
+    pending.resultDetail = landingTile.effect === 'move'
+      ? `추가 이동 결과, ${landingTile.name} 칸에 도착했어요. 이동 효과는 연쇄 발동하지 않아요.`
+      : `추가 이동 결과, ${landingTile.name} 칸에 도착했어요. 칸 안내를 확인해 주세요.`;
     pending.phase = 'followup';
     pending.startedAt = Date.now();
     pending.id = crypto.randomUUID();
