@@ -469,8 +469,8 @@ function consumeShield(useShield) {
 
 function acknowledgeLanding() {
   if (!state.pending) return;
-  const pending = state.pending;
   const next = cloneState(state);
+  const pending = next.pending;
   const player = next.players.find((item) => item.id === pending.playerId);
   if (pending.tile.effect === 'shield' && player && pending.phase !== 'shield-granted') {
     if (player.shields < next.shieldCap) {
