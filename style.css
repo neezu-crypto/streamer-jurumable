@@ -17,3 +17,19 @@
 .dialog-icon{height:76px;display:grid;place-items:center}
 .dialog-icon svg{display:block;width:76px;height:76px;overflow:visible;filter:drop-shadow(0 5px 3px #27345320)}
 @media(max-width:640px){.board-cell{gap:0;padding:10px 2px 6px}.tile-illustration{width:clamp(22px,5.8vw,31px)}.tile-name{font-size:clamp(8px,2.3vw,11px);line-height:1.02}.tile-pawns{right:1px;bottom:0}.obs-board-grid .board-cell{gap:0;padding:9px 2px 6px}.obs-board-grid .tile-illustration{width:clamp(26px,7vw,42px)}.obs-board-grid .tile-name{font-size:clamp(9px,2.5vw,16px)}.library-illustration{width:23px;height:23px}}
+/* Per-item illustrated card panels sit behind the separate SVG icon and live label. */
+.board-grid .board-cell,.obs-board-grid .board-cell{isolation:isolate;overflow:hidden;border:0;background:transparent;box-shadow:none}
+.board-grid .board-cell:nth-child(n),.obs-board-grid .board-cell:nth-child(n){background:transparent;box-shadow:none}
+.tile-card-art{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;pointer-events:none}
+.tile-card-art use{width:100%;height:100%}
+.tile-number,.tile-illustration,.tile-name,.tile-pawns{z-index:1}
+.tile-number{border-radius:7px;background:#fffdf2d9;padding:2px 4px}
+.board-cell .tile-illustration{position:absolute;top:8%;left:50%;transform:translateX(-50%);margin:0}
+.board-cell .tile-name{position:absolute;left:8%;right:8%;bottom:8%;height:20%;display:grid;place-items:center;padding:0;font-size:clamp(10px,1.05vw,16px);line-height:1.04;text-align:center;overflow-wrap:anywhere}
+.board-cell .tile-pawns{top:4px;right:4px;bottom:auto;z-index:2}
+.board-cell.is-shield:after{display:none}
+.board-cell.current{outline:3px solid #ff4d8d;outline-offset:1px;box-shadow:0 0 0 5px #ff4d8d40,0 0 18px #ff4d8d80;animation:cardPulse 1.7s infinite;z-index:4}
+@keyframes cardPulse{50%{filter:saturate(1.18) brightness(1.06);box-shadow:0 0 0 5px #ff4d8d68,0 0 23px #ff4d8d99}}
+.obs-board-grid .board-cell .tile-illustration{width:clamp(39px,4.15vw,60px)}
+.obs-board-grid .board-cell .tile-name{font-size:clamp(13px,1.32vw,22px)}
+@media(max-width:640px){.board-cell .tile-illustration{top:9%;width:clamp(22px,5.8vw,31px)}.board-cell .tile-name{left:7%;right:7%;bottom:8%;height:20%;font-size:clamp(8px,2.3vw,11px)}.board-cell .tile-number{padding:1px 3px}.board-cell .tile-pawns{top:2px;right:2px}.obs-board-grid .board-cell .tile-illustration{width:clamp(27px,7vw,42px)}.obs-board-grid .board-cell .tile-name{font-size:clamp(9px,2.5vw,16px)}}

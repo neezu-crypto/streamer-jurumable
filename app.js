@@ -89,9 +89,17 @@ function escapeHTML(value) {
   return String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 }
 
+function tileIllustrationId(tile) {
+  return LIBRARY.find((item) => item.id === tile?.id)?.id || 'free';
+}
+
 function tileIllustrationMarkup(tile) {
-  const iconId = LIBRARY.find((item) => item.id === tile?.id)?.id || 'free';
+  const iconId = tileIllustrationId(tile);
   return `<svg viewBox="0 0 96 96" aria-hidden="true" focusable="false"><use href="assets/tile-illustrations.svg#tile-${iconId}"></use></svg>`;
+}
+
+function tileCardArtMarkup(tile) {
+  return `<svg class="tile-card-art" viewBox="0 0 96 96" aria-hidden="true" focusable="false"><use href="assets/tile-cards.svg#card-${tileIllustrationId(tile)}"></use></svg>`;
 }
 
 function cloneState(value) { return JSON.parse(JSON.stringify(value)); }
@@ -141,7 +149,7 @@ function renderBoard(targetId, interactive) {
     const current = currentPlayer();
     if (state.status === 'playing' && current && movingPosition(current) === index) cell.classList.add('current');
     const activePlayers = state.players.filter((player) => movingPosition(player) === index);
-    cell.innerHTML = `<span class="tile-number">${String(index + 1).padStart(2, '0')}</span><span class="tile-illustration">${tileIllustrationMarkup(tile)}</span><span class="tile-name">${escapeHTML(tile.name)}</span><span class="tile-pawns">${activePlayers.map((player) => `<i class="pawn" title="${escapeHTML(player.name)}" style="background:${escapeHTML(player.color)}"></i>`).join('')}</span>`;
+    cell.innerHTML = `${tileCardArtMarkup(tile)}<span class="tile-number">${String(index + 1).padStart(2, '0')}</span><span class="tile-illustration">${tileIllustrationMarkup(tile)}</span><span class="tile-name">${escapeHTML(tile.name)}</span><span class="tile-pawns">${activePlayers.map((player) => `<i class="pawn" title="${escapeHTML(player.name)}" style="background:${escapeHTML(player.color)}"></i>`).join('')}</span>`;
     grid.append(cell);
   });
 }

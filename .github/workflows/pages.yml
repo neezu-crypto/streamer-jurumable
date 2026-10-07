@@ -29,7 +29,7 @@ jobs:
         run: |
           mkdir -p _site/assets
           cp index.html app.js style.css _site/
-          cp assets/tile-illustrations.svg _site/assets/
+          cp assets/tile-illustrations.svg assets/tile-cards.svg _site/assets/
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:
