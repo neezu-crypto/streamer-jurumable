@@ -56,12 +56,6 @@ const callGetRoomState = httpsCallable(functions, 'jurumableGetRoomState');
 const $ = (id) => document.getElementById(id);
 let currentUser = null;
 let roomId = roomParam || localStorage.getItem('jurumable.roomId') || '';
-function syncGameSeriesEmoteRoom() {
-  const value = roomId || 'public';
-  window.__gameSeriesEmoteRoomId = value;
-  window.dispatchEvent(new CustomEvent('game-series-emote-room-change', { detail: { roomId: value } }));
-}
-syncGameSeriesEmoteRoom();
 let hostKey = roomId ? localStorage.getItem(`jurumable.host.${roomId}`) || '' : '';
 let viewKey = new URLSearchParams(location.search).get('key') || (roomId ? localStorage.getItem(`jurumable.view.${roomId}`) || '' : '');
 let pendingReplacement = null;
@@ -656,7 +650,6 @@ async function createRoom() {
     if (!auth.currentUser) await signInAnonymously(auth);
     const result = await callCreateRoom({ state: cloneState(state) });
     roomId = result.data.roomId;
-    syncGameSeriesEmoteRoom();
     hostKey = result.data.hostKey;
     viewKey = result.data.viewKey;
     localStorage.setItem('jurumable.roomId', roomId);
@@ -755,7 +748,6 @@ async function start() {
     else if (roomId) {
       showToast('이 브라우저에서 편집할 수 없는 공유 링크입니다. 새 방을 만들어 주세요.');
       roomId = '';
-      syncGameSeriesEmoteRoom();
     }
   } catch (error) {
     console.error('초기 연결 실패', error);
