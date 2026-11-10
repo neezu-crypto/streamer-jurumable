@@ -17,7 +17,7 @@ const firebaseConfig = {
 // SERVICE_ID / PAUSE_FLAG_URL / DEFAULT_PAUSED 는 서비스마다 다르다(나머지 코드는 시리즈 공통).
 const SERVICE_ID = 'streamerJurumable';
 const PAUSE_FLAG_URL = 'https://soop-stock-market-default-rtdb.firebaseio.com/servicePause/streamerJurumable.json';
-const DEFAULT_PAUSED = true;
+const DEFAULT_PAUSED = false;
 const PAUSE_POLL_MS = 20 * 1000;
 const PAUSE_FETCH_TIMEOUT_MS = 5000;
 const PAGE_APP_WAIT_MS = 4000;

@@ -28,7 +28,7 @@ jobs:
       - name: Assemble site files
         run: |
           mkdir -p _site/assets
-          cp index.html app.js style.css _site/
+          cp index.html app.js style.css maintenance-admin-gate.js _site/
           cp assets/tile-illustrations.svg assets/tile-cards.svg _site/assets/
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
