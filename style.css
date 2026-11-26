@@ -33,3 +33,9 @@
 .obs-board-grid .board-cell .tile-illustration{width:clamp(39px,4.15vw,60px)}
 .obs-board-grid .board-cell .tile-name{font-size:clamp(13px,1.32vw,22px)}
 @media(max-width:640px){.board-cell .tile-illustration{top:9%;width:clamp(22px,5.8vw,31px)}.board-cell .tile-name{left:7%;right:7%;bottom:8%;height:20%;font-size:clamp(8px,2.3vw,11px)}.board-cell .tile-number{padding:1px 3px}.board-cell .tile-pawns{top:2px;right:2px}.obs-board-grid .board-cell .tile-illustration{width:clamp(27px,7vw,42px)}.obs-board-grid .board-cell .tile-name{font-size:clamp(9px,2.5vw,16px)}}
+
+/* 2026-11-27 칸 일러스트 그림: 그림 안에 아이콘이 있으므로 SVG 아이콘은 숨기고, 이름은 그림 아래 빈 띠 위에 얹는다. */
+.board-cell.has-art{background:transparent;border-color:transparent;box-shadow:none}
+.board-cell.has-art .tile-art-img{object-fit:contain;filter:drop-shadow(0 3px 4px #2734532e)}
+.board-cell.has-art .tile-illustration{display:none}
+.board-cell.has-art .tile-name{bottom:5%;height:18%;color:#2b2f45;text-shadow:0 1px 0 #ffffffb3}

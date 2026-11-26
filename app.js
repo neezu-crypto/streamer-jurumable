@@ -131,7 +131,12 @@ function tileIllustrationMarkup(tile) {
   return `<svg viewBox="0 0 96 96" aria-hidden="true" focusable="false"><use href="assets/tile-illustrations.svg#tile-${iconId}"></use></svg>`;
 }
 
+// 2026-11-27: 칸 항목 일러스트가 그려진 보드 칸 그림(투명 배경 WebP). 그림이 있는 칸은 카드 배경+아이콘 SVG 대신 이 그림 한 장을 쓴다.
+const TILE_ART_IDS = new Set(['start', 'drink', 'shield', 'snack', 'song', 'water', 'viewerpick', 'squat', 'english', 'reverse', 'rollagain', 'back3', 'forward3', 'aegyo', 'tmi', 'random', 'qa', 'rest', 'tip', 'dance', 'impression', 'toast', 'challenge', 'free']);
+function hasTileArt(tile) { return TILE_ART_IDS.has(tileIllustrationId(tile)); }
+
 function tileCardArtMarkup(tile) {
+  if (hasTileArt(tile)) return `<img class="tile-card-art tile-art-img" src="assets/tiles/${tileIllustrationId(tile)}.webp?v=20261127" alt="" width="256" height="256" decoding="async" draggable="false">`;
   return `<svg class="tile-card-art" viewBox="0 0 96 96" aria-hidden="true" focusable="false"><use href="assets/tile-cards.svg#card-${tileIllustrationId(tile)}"></use></svg>`;
 }
 
@@ -165,7 +170,7 @@ function renderBoard(targetId, interactive) {
   state.board.forEach((tile, index) => {
     const coordinates = boardGridCoordinates(index);
     const cell = document.createElement(interactive ? 'button' : 'div');
-    cell.className = `board-cell${index === 0 ? ' is-start' : ''}${tile.effect === 'shield' ? ' is-shield' : ''}`;
+    cell.className = `board-cell${index === 0 ? ' is-start' : ''}${tile.effect === 'shield' ? ' is-shield' : ''}${hasTileArt(tile) ? ' has-art' : ''}`;
     cell.style.gridRow = coordinates.gridRow;
     cell.style.gridColumn = coordinates.gridColumn;
     if (interactive) {
@@ -736,6 +741,8 @@ function restoreHostRoom() {
 }
 
 async function start() {
+  // 점검 '메인만 보기' 중에는 익명 로그인·방 불러오기를 하지 않는다(게이트가 풀어 줄 때까지 대기).
+  if (window.__seriesAppReady) await window.__seriesAppReady;
   try {
     if (isObs) {
       await initObs();
